@@ -188,7 +188,7 @@ library TokenizedDerivativeUtils {
         s.fixedParameters.marginRequirement = params.requiredMargin;
 
         s.externalAddresses.marginCurrency = IERC20(params.marginCurrency);
-        
+
         // Keep the starting token price relatively close to 1 ether to prevent users from unintentionally creating
         // rounding or overflow errors.
         require(params.startingTokenPrice >= uint(1 ether).div(10**9));
@@ -473,7 +473,7 @@ library TokenizedDerivativeUtils {
 
         // Update nav of contract.
         int navNew = s._computeNav(latestPrice, latestTime);
-        
+
         // Save the current NAV in case it's required to compute the default penalty.
         int previousNav = s.nav;
 
@@ -590,7 +590,7 @@ library TokenizedDerivativeUtils {
     function _satisfiesMarginRequirement(TDS.Storage storage s, int balance, int currentNav)
         internal
         view
-        returns (bool doesSatisfyRequirement) 
+        returns (bool doesSatisfyRequirement)
     {
         return s._getRequiredEthMargin(currentNav) <= balance;
     }
@@ -627,7 +627,7 @@ library TokenizedDerivativeUtils {
         emit NavUpdated(s.fixedParameters.symbol, navNew, s.currentTokenState.tokenPrice);
     }
 
-    // Function is internally only called by `_settleAgreedPrice` or `_settleVerifiedPrice`. This function handles all 
+    // Function is internally only called by `_settleAgreedPrice` or `_settleVerifiedPrice`. This function handles all
     // of the settlement logic including assessing penalties and then moves the state to `Settled`.
     function _settleWithPrice(TDS.Storage storage s, int price) internal {
 
@@ -907,7 +907,7 @@ contract TokenizedDerivativeCreator is ContractCreator {
         public
         ContractCreator(
             registryAddress, _oracleAddress, _storeAddress, _priceFeedAddress) { // solhint-disable-line no-empty-blocks
-        } 
+        }
 
     function createTokenizedDerivative(Params memory params)
         public

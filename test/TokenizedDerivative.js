@@ -628,6 +628,33 @@ contract("TokenizedDerivative", function(accounts) {
       assert.equal(shortBalance.toString(), expectedSponsorAccountBalance.toString());
     });
 
+    it(annotateTitle("Live -> Default -> Settled (oracle) [default]"), async function() {
+      // A new TokenizedDerivative must be deployed before the start of each test case.
+      await deployNewTokenizedDerivative();
+
+      // Sponsor initializes contract.
+      await derivativeContract.depositAndCreateTokens(
+        web3.utils.toWei("1", "ether"),
+        await getMarginParams(web3.utils.toWei("1.2", "ether"))
+      );
+
+      // Verify initial state, nav, and balances.
+      const initialNav = (await derivativeContract.derivativeStorage()).nav;
+      let longBalance = (await derivativeContract.derivativeStorage()).longBalance;
+      let shortBalance = (await derivativeContract.derivativeStorage()).shortBalance;
+      assert.equal(initialNav.toString(), web3.utils.toWei("1", "ether"));
+      assert.equal(longBalance.toString(), web3.utils.toBN(web3.utils.toWei("1", "ether")));
+      assert.equal(shortBalance.toString(), web3.utils.toBN(web3.utils.toWei("0.2", "ether")));
+      let state = (await derivativeContract.derivativeStorage()).state;
+      assert.equal(state.toString(), "0");
+
+      // The price increases, forcing the sponsor into default.
+      const navPreDefault = (await derivativeContract.derivativeStorage()).nav;
+      await pushPrice(web3.utils.toWei("1.1", "ether"));
+      const defaultTime = (await deployedManualPriceFeed.latestPrice(identifierBytes))[0];
+
+    });
+
     it(annotateTitle("Live -> Default -> Settled (oracle) [price available]"), async function() {
       // A new TokenizedDerivative must be deployed before the start of each test case.
       await deployNewTokenizedDerivative();
