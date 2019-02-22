@@ -5,6 +5,9 @@ import "./App.css";
 import Dashboard from "./components/Dashboard.js";
 import params from "./parameters.json";
 
+// Add local parameters defined in sponsor-dapp/.env.local
+params.margin = process.env.REACT_APP_MARGIN;
+
 const theme = createMuiTheme({
   palette: {
     primary: {

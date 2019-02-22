@@ -34,6 +34,34 @@ class CreateContractModal extends React.Component {
   };
 
   submit = () => {
+    // TODO: Verify margin currency is in whitelist
+
+    const { web3 } = this.props.drizzle;
+    const { formInputs } = this.state;
+    const account = this.props.drizzleState.accounts[0];
+
+    const constructorParams = {
+      sponsor: account,
+      defaultPenalty: web3.utils.toWei("0.5", "ether"),
+      supportedMove: web3.utils.toWei("0.1", "ether"),
+      product: web3.utils.hexToBytes(web3.utils.utf8ToHex(formInputs.identifier)),
+      fixedYearlyFee: web3.utils.toWei("0.01", "ether"),
+      disputeDeposit: web3.utils.toWei("0.5", "ether"),
+      returnCalculator: formInputs.leverage,
+      startingTokenPrice: web3.utils.toWei("1", "ether"),
+      expiry: 0,
+      marginCurrency: this.props.params.margin,
+      withdrawLimit: web3.utils.toWei("0.33", "ether"),
+      returnType: "1", // Compound
+      startingUnderlyingPrice: "0", // Use price feed
+      name: formInputs.name,
+      symbol: formInputs.symbol
+    }
+
+    const { TokenizedDerivativeCreator } = this.props.drizzle.contracts;
+    console.log("constructorParams", constructorParams);
+    TokenizedDerivativeCreator.methods.createTokenizedDerivative.cacheSend(constructorParams, { from: account });
+
     this.props.onClose();
   };
 
