@@ -69,6 +69,7 @@ class DerivativeList extends React.Component {
     const { drizzle, drizzleState } = this.props;
     const { web3 } = drizzle;
     const derivatives = this.getDerivativeList();
+    console.log("derivatives", derivatives);
 
     let additionalDerivativeKeys = {};
     for (let derivative of derivatives) {
@@ -182,6 +183,7 @@ class DerivativeList extends React.Component {
 
   render() {
     const derivatives = this.getDerivativesData();
+    console.log("derivatives data", derivatives);
 
     return <DerivativeListTable derivatives={derivatives} buttonPushFn={this.props.buttonPushFn} />;
   }
