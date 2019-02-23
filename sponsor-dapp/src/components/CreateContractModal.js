@@ -128,7 +128,6 @@ class CreateContractModal extends React.Component {
       }
 
       this.whitelistAddress = cachedAddress.value;
-
       unsubscribe();
       drizzle.addContract({
         contractName: this.whitelistAddress,

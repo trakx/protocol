@@ -80,53 +80,58 @@ class Dashboard extends React.Component {
     const { TokenizedDerivativeCreator } = drizzle.contracts;
     const sponsorWhitelistKey = TokenizedDerivativeCreator.methods.sponsorWhitelist.cacheCall();
     let contractAdded = false;
-    let calledIsOnWhitelist = false;
-    let onWhitelistKey = null;
 
     const unsubscribe = drizzle.store.subscribe(() => {
-      const drizzleState = drizzle.store.getState();
+      const state = drizzle.store.getState();
 
-      const { TokenizedDerivativeCreator } = drizzleState.contracts;
+      const { TokenizedDerivativeCreator } = state.contracts;
       const sponsorWhitelist = TokenizedDerivativeCreator.sponsorWhitelist[sponsorWhitelistKey];
       if (sponsorWhitelist == null) {
         return;
       }
 
-      const account = this.props.drizzleState.accounts[0];
+      const account = state.accounts[0];
 
-      const whitelistAddress = sponsorWhitelist.value;
       // Add the sponsorWhitelist contract. Use a flag to prevent recursive calls.
-      if (!contractAdded && drizzle.contracts[whitelistAddress] == null) {
+      if (!contractAdded) {
         contractAdded = true;
+        this.setState({ whitelistAddress: sponsorWhitelist.value });
         drizzle.addContract({
-          contractName: whitelistAddress,
-          web3Contract: new drizzle.web3.eth.Contract(AddressWhitelist.abi, whitelistAddress)
+          contractName: this.state.whitelistAddress,
+          web3Contract: new drizzle.web3.eth.Contract(AddressWhitelist.abi, this.state.whitelistAddress)
         });
       }
 
-      if (drizzle.contracts[whitelistAddress] == null) {
+      if (drizzle.contracts[this.state.whitelistAddress] == null) {
         return;
       }
 
-      const addressWhitelist = drizzle.contracts[whitelistAddress];
-      if (!calledIsOnWhitelist) {
-        calledIsOnWhitelist = true;
-        onWhitelistKey = addressWhitelist.methods.isOnWhitelist.cacheCall(account);
-      }
-
-      const isOnWhitelist = drizzleState.contracts[whitelistAddress].isOnWhitelist[onWhitelistKey];
-      if (isOnWhitelist == null) {
-        return;
-      }
-
-      this.setState({ isCreateDisabled: !isOnWhitelist.value });
       unsubscribe();
+
+      const addressWhitelist = drizzle.contracts[this.state.whitelistAddress];
+      this.setState({
+        onWhitelistKey: addressWhitelist.methods.isOnWhitelist.cacheCall(account)
+      });
     });
+  }
+
+  isCreateDisabled() {
+    const sponsorWhitelist = this.props.drizzle.store.getState().contracts[this.state.whitelistAddress];
+    if (!sponsorWhitelist) {
+      return true;
+    }
+
+    const onWhitelist = sponsorWhitelist.isOnWhitelist[this.state.onWhitelistKey];
+    if (!onWhitelist) {
+      return true;
+    }
+
+    return !onWhitelist.value;
   }
 
   render() {
     const { classes, drizzleState } = this.props;
-    const isCreateDisabled = this.state.isCreateDisabled;
+    const isCreateDisabled = this.isCreateDisabled();
 
     return (
       <React.Fragment>
