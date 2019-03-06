@@ -7,6 +7,7 @@ import IERC20 from "../contracts/IERC20.json";
 import TokenPreapproval from "./TokenPreapproval.js";
 import ManualPriceFeed from "../contracts/ManualPriceFeed.json";
 import { ContractStateEnum, hasEthMarginCurrency, stateToString } from "../utils/TokenizedDerivativeUtils.js";
+import { currencyAddressToName } from "../utils/MarginCurrencyUtils.js";
 import { formatDate } from "../utils/FormattingUtils.js";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -376,16 +377,18 @@ class ContractDetails extends Component {
     const contractName = contract.name[this.state.nameDataKey].value;
 
     let contractState = stateToString(derivativeStorage.state);
+    const marginCurrencyName = currencyAddressToName({}, derivativeStorage.externalAddresses.marginCurrency);
+    const denominationName = marginCurrencyName != null ? marginCurrencyName : derivativeStorage.externalAddresses.marginCurrency;
     const contractParameters = {
       contractAddress: this.props.contractAddress,
       creatorAddress: derivativeStorage.externalAddresses.sponsor,
-      creationTime: "UNKNOWN",
+      creationTime: formatDate(derivativeStorage.fixedParameters.creationTime, web3),
       // The TokenizedDerivative smart contract uses this value `~uint(0)` as a sentinel to indicate no expiry.
       expiryTime: derivativeStorage.endTime === UINT_MAX ? "None" : formatDate(derivativeStorage.endTime, web3),
       priceFeedAddress: derivativeStorage.externalAddresses.priceFeed,
       marginCurrency: hasEthMarginCurrency(derivativeStorage)
         ? "ETH"
-        : derivativeStorage.externalAddresses.marginCurrency,
+        : denominationName,
       returnCalculator: derivativeStorage.externalAddresses.returnCalculator
     };
 
@@ -400,7 +403,7 @@ class ContractDetails extends Component {
           </Typography>
         </div>
         <ContractParameters parameters={contractParameters} />
-        <ContractFinancialsTable drizzle={drizzle} contractAddress={this.props.contractAddress} />
+        <ContractFinancialsTable drizzle={drizzle} contractAddress={this.props.contractAddress} marginCurrency={marginCurrencyName} />
         {this.getInteractions()}
       </div>
     );

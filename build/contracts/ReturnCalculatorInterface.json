@@ -1,0 +1,465 @@
+{
+  "contractName": "ReturnCalculatorInterface",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "oldPrice",
+          "type": "int256"
+        },
+        {
+          "name": "newPrice",
+          "type": "int256"
+        }
+      ],
+      "name": "computeReturn",
+      "outputs": [
+        {
+          "name": "assetReturn",
+          "type": "int256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "leverage",
+      "outputs": [
+        {
+          "name": "_leverage",
+          "type": "int256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "/*\n  ReturnCalculator Interface\n  The interface that contracts use to compute different modified return structures.\n*/\npragma solidity ^0.5.0;\n\n\ninterface ReturnCalculatorInterface {\n    // Computes the return between oldPrice and newPrice.\n    function computeReturn(int oldPrice, int newPrice) external view returns (int assetReturn);\n\n    // Gets the effective leverage for the return calculator.\n    // Note: if this parameter doesn't exist for this calculator, this method should return 1.\n    function leverage() external view returns (int _leverage);\n}\n",
+  "sourcePath": "/Users/matt/git/protocol/contracts/ReturnCalculatorInterface.sol",
+  "ast": {
+    "absolutePath": "/Users/matt/git/protocol/contracts/ReturnCalculatorInterface.sol",
+    "exportedSymbols": {
+      "ReturnCalculatorInterface": [
+        2742
+      ]
+    },
+    "id": 2743,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2727,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "119:23:15"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 2742,
+        "linearizedBaseContracts": [
+          2742
+        ],
+        "name": "ReturnCalculatorInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 2736,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "computeReturn",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2732,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2729,
+                  "name": "oldPrice",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2736,
+                  "src": "268:12:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  },
+                  "typeName": {
+                    "id": 2728,
+                    "name": "int",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "268:3:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2731,
+                  "name": "newPrice",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2736,
+                  "src": "282:12:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  },
+                  "typeName": {
+                    "id": 2730,
+                    "name": "int",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "282:3:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "267:28:15"
+            },
+            "returnParameters": {
+              "id": 2735,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2734,
+                  "name": "assetReturn",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2736,
+                  "src": "319:15:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  },
+                  "typeName": {
+                    "id": 2733,
+                    "name": "int",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "319:3:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "318:17:15"
+            },
+            "scope": 2742,
+            "src": "245:91:15",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 2741,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "leverage",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2737,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "516:2:15"
+            },
+            "returnParameters": {
+              "id": 2740,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2739,
+                  "name": "_leverage",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2741,
+                  "src": "542:13:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  },
+                  "typeName": {
+                    "id": 2738,
+                    "name": "int",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "542:3:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "541:15:15"
+            },
+            "scope": 2742,
+            "src": "499:58:15",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 2743,
+        "src": "145:414:15"
+      }
+    ],
+    "src": "119:441:15"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/matt/git/protocol/contracts/ReturnCalculatorInterface.sol",
+    "exportedSymbols": {
+      "ReturnCalculatorInterface": [
+        2742
+      ]
+    },
+    "id": 2743,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2727,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "119:23:15"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 2742,
+        "linearizedBaseContracts": [
+          2742
+        ],
+        "name": "ReturnCalculatorInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 2736,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "computeReturn",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2732,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2729,
+                  "name": "oldPrice",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2736,
+                  "src": "268:12:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  },
+                  "typeName": {
+                    "id": 2728,
+                    "name": "int",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "268:3:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2731,
+                  "name": "newPrice",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2736,
+                  "src": "282:12:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  },
+                  "typeName": {
+                    "id": 2730,
+                    "name": "int",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "282:3:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "267:28:15"
+            },
+            "returnParameters": {
+              "id": 2735,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2734,
+                  "name": "assetReturn",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2736,
+                  "src": "319:15:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  },
+                  "typeName": {
+                    "id": 2733,
+                    "name": "int",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "319:3:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "318:17:15"
+            },
+            "scope": 2742,
+            "src": "245:91:15",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 2741,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "leverage",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2737,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "516:2:15"
+            },
+            "returnParameters": {
+              "id": 2740,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2739,
+                  "name": "_leverage",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2741,
+                  "src": "542:13:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  },
+                  "typeName": {
+                    "id": 2738,
+                    "name": "int",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "542:3:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "541:15:15"
+            },
+            "scope": 2742,
+            "src": "499:58:15",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 2743,
+        "src": "145:414:15"
+      }
+    ],
+    "src": "119:441:15"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.1",
+  "updatedAt": "2019-02-25T22:54:21.347Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

@@ -6,6 +6,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { withStyles } from "@material-ui/core/styles";
+import grey from '@material-ui/core/colors/grey';
 
 import { formatDate, formatWei } from "../utils/FormattingUtils";
 import DrizzleHelper from "../utils/DrizzleHelper";
@@ -16,7 +17,7 @@ const styles = theme => ({
     overflowX: "auto"
   },
   shaded: {
-    backgroundColor: "gray"
+    backgroundColor: grey[100]
   }
 });
 
@@ -27,8 +28,10 @@ class ContractFinancialsTable extends Component {
 
   render() {
     const { drizzleHelper } = this;
-    const { contractAddress, drizzle, classes } = this.props;
+    const { contractAddress, drizzle, classes, marginCurrency } = this.props;
     const account = drizzle.store.getState().accounts[0];
+
+    const marginCurrencyDisplayName = marginCurrency != null ? " " + marginCurrency : "";
 
     const derivativeStorage = drizzleHelper.getCache(contractAddress, "derivativeStorage", []);
 
@@ -48,21 +51,21 @@ class ContractFinancialsTable extends Component {
 
     const previousTime = formatDate(derivativeStorage.currentTokenState.time, web3);
     const previousAssetPrice = formatWei(derivativeStorage.currentTokenState.underlyingPrice, web3);
-    const previousTokenPrice = formatWei(derivativeStorage.currentTokenState.tokenPrice, web3) + "/token";
-    const previousLongMargin = formatWei(derivativeStorage.longBalance, web3);
-    const previousShortMargin = formatWei(derivativeStorage.shortBalance, web3);
+    const previousTokenPrice = formatWei(derivativeStorage.currentTokenState.tokenPrice, web3) + marginCurrencyDisplayName + "/token";
+    const previousLongMargin = formatWei(derivativeStorage.longBalance, web3) + marginCurrencyDisplayName;
+    const previousShortMargin = formatWei(derivativeStorage.shortBalance, web3) + marginCurrencyDisplayName;
     const previousTotalHoldings = formatWei(
       toBN(derivativeStorage.longBalance).add(toBN(derivativeStorage.shortBalance)),
       web3
-    );
+    ) + marginCurrencyDisplayName;
 
     const currentTime = formatDate(latestPrice.publishTime, web3);
     const currentAssetPrice = formatWei(latestPrice.price, web3);
-    const currentTokenPrice = estimatedTokenValue ? formatWei(estimatedTokenValue, web3) + "/token" : "Unknown";
-    const currentLongMargin = estimatedNav ? formatWei(estimatedNav, web3) : "Unknown";
-    const currentShortMargin = estimatedShort ? formatWei(estimatedShort, web3) : "Unknown";
+    const currentTokenPrice = estimatedTokenValue ? formatWei(estimatedTokenValue, web3) + marginCurrencyDisplayName + "/token" : "Unknown";
+    const currentLongMargin = estimatedNav ? formatWei(estimatedNav, web3) + marginCurrencyDisplayName : "Unknown";
+    const currentShortMargin = estimatedShort ? formatWei(estimatedShort, web3) + marginCurrencyDisplayName : "Unknown";
     const currentTotalHoldings =
-      estimatedNav && estimatedShort ? formatWei(toBN(estimatedNav).add(toBN(estimatedShort)), web3) : "Unknown";
+      estimatedNav && estimatedShort ? formatWei(toBN(estimatedNav).add(toBN(estimatedShort)), web3) + marginCurrencyDisplayName : "Unknown";
 
     const numTotalTokens = formatWei(totalSupply, web3);
     const tokenBalance = formatWei(balanceOf, web3);
@@ -116,8 +119,8 @@ class ContractFinancialsTable extends Component {
 
             <TableRow key="tokenSupply" className={classes.shaded}>
               <TableCell>Token supply:</TableCell>
-              <TableCell>{numTotalTokens}</TableCell>
-              <TableCell>{numTotalTokens}</TableCell>
+              <TableCell>{numTotalTokens} tokens</TableCell>
+              <TableCell>{numTotalTokens} tokens</TableCell>
             </TableRow>
 
             <TableRow key="yourTokens">

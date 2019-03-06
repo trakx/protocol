@@ -2214,14 +2214,6 @@ contract("TokenizedDerivative", function(accounts) {
         )
       );
 
-      // Withdraw limit is too high.
-      const withdrawLimitTooHighParams = { ...defaultConstructorParams, withdrawLimit: web3.utils.toWei("1", "ether") };
-      assert(
-        await didContractThrow(
-          tokenizedDerivativeCreator.createTokenizedDerivative(withdrawLimitTooHighParams, { from: sponsor })
-        )
-      );
-
       // Unapproved sponsor.
       const unapprovedSponsorParams = defaultConstructorParams;
       assert(
