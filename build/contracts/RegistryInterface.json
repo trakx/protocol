@@ -1,0 +1,1443 @@
+{
+  "contractName": "RegistryInterface",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "counterparties",
+          "type": "address[]"
+        },
+        {
+          "name": "derivativeAddress",
+          "type": "address"
+        }
+      ],
+      "name": "registerDerivative",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "derivativeCreator",
+          "type": "address"
+        }
+      ],
+      "name": "addDerivativeCreator",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "derivativeCreator",
+          "type": "address"
+        }
+      ],
+      "name": "removeDerivativeCreator",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "derivative",
+          "type": "address"
+        }
+      ],
+      "name": "isDerivativeRegistered",
+      "outputs": [
+        {
+          "name": "isRegistered",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "party",
+          "type": "address"
+        }
+      ],
+      "name": "getRegisteredDerivatives",
+      "outputs": [
+        {
+          "components": [
+            {
+              "name": "derivativeAddress",
+              "type": "address"
+            },
+            {
+              "name": "derivativeCreator",
+              "type": "address"
+            }
+          ],
+          "name": "derivatives",
+          "type": "tuple[]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getAllRegisteredDerivatives",
+      "outputs": [
+        {
+          "components": [
+            {
+              "name": "derivativeAddress",
+              "type": "address"
+            },
+            {
+              "name": "derivativeCreator",
+              "type": "address"
+            }
+          ],
+          "name": "derivatives",
+          "type": "tuple[]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "derivativeCreator",
+          "type": "address"
+        }
+      ],
+      "name": "isDerivativeCreatorAuthorized",
+      "outputs": [
+        {
+          "name": "isAuthorized",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "/*\n  Registry Interface\n*/\npragma solidity ^0.5.0;\n\npragma experimental ABIEncoderV2;\n\n\ninterface RegistryInterface {\n    struct RegisteredDerivative {\n        address derivativeAddress;\n        address derivativeCreator;\n    }\n\n    // Registers a new derivative. Only authorized derivative creators can call this method.\n    function registerDerivative(address[] calldata counterparties, address derivativeAddress) external;\n\n    // Adds a new derivative creator to this list of authorized creators. Only the owner of this contract can call\n    // this method.   \n    function addDerivativeCreator(address derivativeCreator) external;\n\n    // Removes a derivative creator to this list of authorized creators. Only the owner of this contract can call this\n    // method.  \n    function removeDerivativeCreator(address derivativeCreator) external;\n\n    // Returns whether the derivative has been registered with the registry (and is therefore an authorized participant\n    // in the UMA system).\n    function isDerivativeRegistered(address derivative) external view returns (bool isRegistered);\n\n    // Returns a list of all derivatives that are associated with a particular party.\n    function getRegisteredDerivatives(address party) external view returns (RegisteredDerivative[] memory derivatives);\n\n    // Returns all registered derivatives.\n    function getAllRegisteredDerivatives() external view returns (RegisteredDerivative[] memory derivatives);\n\n    // Returns whether an address is authorized to register new derivatives.\n    function isDerivativeCreatorAuthorized(address derivativeCreator) external view returns (bool isAuthorized);\n}\n",
+  "sourcePath": "/Users/matt/git/protocol/contracts/RegistryInterface.sol",
+  "ast": {
+    "absolutePath": "/Users/matt/git/protocol/contracts/RegistryInterface.sol",
+    "exportedSymbols": {
+      "RegistryInterface": [
+        1684
+      ]
+    },
+    "id": 1685,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1631,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "27:23:13"
+      },
+      {
+        "id": 1632,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "52:33:13"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 1684,
+        "linearizedBaseContracts": [
+          1684
+        ],
+        "name": "RegistryInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "RegistryInterface.RegisteredDerivative",
+            "id": 1637,
+            "members": [
+              {
+                "constant": false,
+                "id": 1634,
+                "name": "derivativeAddress",
+                "nodeType": "VariableDeclaration",
+                "scope": 1637,
+                "src": "160:25:13",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 1633,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "160:7:13",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1636,
+                "name": "derivativeCreator",
+                "nodeType": "VariableDeclaration",
+                "scope": 1637,
+                "src": "195:25:13",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 1635,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "195:7:13",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "RegisteredDerivative",
+            "nodeType": "StructDefinition",
+            "scope": 1684,
+            "src": "122:105:13",
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1645,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "registerDerivative",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1643,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1640,
+                  "name": "counterparties",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1645,
+                  "src": "354:33:13",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 1638,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "354:7:13",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 1639,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "354:9:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1642,
+                  "name": "derivativeAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1645,
+                  "src": "389:25:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1641,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "389:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "353:62:13"
+            },
+            "returnParameters": {
+              "id": 1644,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "424:0:13"
+            },
+            "scope": 1684,
+            "src": "326:99:13",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1650,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addDerivativeCreator",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1648,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1647,
+                  "name": "derivativeCreator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1650,
+                  "src": "599:25:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1646,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "599:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "598:27:13"
+            },
+            "returnParameters": {
+              "id": 1649,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "634:0:13"
+            },
+            "scope": 1684,
+            "src": "569:66:13",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1655,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeDerivativeCreator",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1653,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1652,
+                  "name": "derivativeCreator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1655,
+                  "src": "810:25:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1651,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "810:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "809:27:13"
+            },
+            "returnParameters": {
+              "id": 1654,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "845:0:13"
+            },
+            "scope": 1684,
+            "src": "777:69:13",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1662,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isDerivativeRegistered",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1658,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1657,
+                  "name": "derivative",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1662,
+                  "src": "1031:18:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1656,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1031:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1030:20:13"
+            },
+            "returnParameters": {
+              "id": 1661,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1660,
+                  "name": "isRegistered",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1662,
+                  "src": "1074:17:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1659,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1074:4:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1073:19:13"
+            },
+            "scope": 1684,
+            "src": "999:94:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1670,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getRegisteredDerivatives",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1665,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1664,
+                  "name": "party",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1670,
+                  "src": "1219:13:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1663,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1219:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1218:15:13"
+            },
+            "returnParameters": {
+              "id": 1669,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1668,
+                  "name": "derivatives",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1670,
+                  "src": "1257:41:13",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_RegisteredDerivative_$1637_memory_$dyn_memory_ptr",
+                    "typeString": "struct RegistryInterface.RegisteredDerivative[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "contractScope": null,
+                      "id": 1666,
+                      "name": "RegisteredDerivative",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 1637,
+                      "src": "1257:20:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_RegisteredDerivative_$1637_storage_ptr",
+                        "typeString": "struct RegistryInterface.RegisteredDerivative"
+                      }
+                    },
+                    "id": 1667,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1257:22:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_RegisteredDerivative_$1637_storage_$dyn_storage_ptr",
+                      "typeString": "struct RegistryInterface.RegisteredDerivative[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1256:43:13"
+            },
+            "scope": 1684,
+            "src": "1185:115:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1676,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAllRegisteredDerivatives",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1671,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1385:2:13"
+            },
+            "returnParameters": {
+              "id": 1675,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1674,
+                  "name": "derivatives",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1676,
+                  "src": "1411:41:13",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_RegisteredDerivative_$1637_memory_$dyn_memory_ptr",
+                    "typeString": "struct RegistryInterface.RegisteredDerivative[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "contractScope": null,
+                      "id": 1672,
+                      "name": "RegisteredDerivative",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 1637,
+                      "src": "1411:20:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_RegisteredDerivative_$1637_storage_ptr",
+                        "typeString": "struct RegistryInterface.RegisteredDerivative"
+                      }
+                    },
+                    "id": 1673,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1411:22:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_RegisteredDerivative_$1637_storage_$dyn_storage_ptr",
+                      "typeString": "struct RegistryInterface.RegisteredDerivative[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1410:43:13"
+            },
+            "scope": 1684,
+            "src": "1349:105:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1683,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isDerivativeCreatorAuthorized",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1679,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1678,
+                  "name": "derivativeCreator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1683,
+                  "src": "1576:25:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1677,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1576:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1575:27:13"
+            },
+            "returnParameters": {
+              "id": 1682,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1681,
+                  "name": "isAuthorized",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1683,
+                  "src": "1626:17:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1680,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1626:4:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1625:19:13"
+            },
+            "scope": 1684,
+            "src": "1537:108:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1685,
+        "src": "88:1559:13"
+      }
+    ],
+    "src": "27:1621:13"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/matt/git/protocol/contracts/RegistryInterface.sol",
+    "exportedSymbols": {
+      "RegistryInterface": [
+        1684
+      ]
+    },
+    "id": 1685,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1631,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "27:23:13"
+      },
+      {
+        "id": 1632,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "52:33:13"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 1684,
+        "linearizedBaseContracts": [
+          1684
+        ],
+        "name": "RegistryInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "RegistryInterface.RegisteredDerivative",
+            "id": 1637,
+            "members": [
+              {
+                "constant": false,
+                "id": 1634,
+                "name": "derivativeAddress",
+                "nodeType": "VariableDeclaration",
+                "scope": 1637,
+                "src": "160:25:13",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 1633,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "160:7:13",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1636,
+                "name": "derivativeCreator",
+                "nodeType": "VariableDeclaration",
+                "scope": 1637,
+                "src": "195:25:13",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 1635,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "195:7:13",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "RegisteredDerivative",
+            "nodeType": "StructDefinition",
+            "scope": 1684,
+            "src": "122:105:13",
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1645,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "registerDerivative",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1643,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1640,
+                  "name": "counterparties",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1645,
+                  "src": "354:33:13",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 1638,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "354:7:13",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 1639,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "354:9:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1642,
+                  "name": "derivativeAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1645,
+                  "src": "389:25:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1641,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "389:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "353:62:13"
+            },
+            "returnParameters": {
+              "id": 1644,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "424:0:13"
+            },
+            "scope": 1684,
+            "src": "326:99:13",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1650,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addDerivativeCreator",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1648,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1647,
+                  "name": "derivativeCreator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1650,
+                  "src": "599:25:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1646,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "599:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "598:27:13"
+            },
+            "returnParameters": {
+              "id": 1649,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "634:0:13"
+            },
+            "scope": 1684,
+            "src": "569:66:13",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1655,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeDerivativeCreator",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1653,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1652,
+                  "name": "derivativeCreator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1655,
+                  "src": "810:25:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1651,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "810:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "809:27:13"
+            },
+            "returnParameters": {
+              "id": 1654,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "845:0:13"
+            },
+            "scope": 1684,
+            "src": "777:69:13",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1662,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isDerivativeRegistered",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1658,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1657,
+                  "name": "derivative",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1662,
+                  "src": "1031:18:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1656,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1031:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1030:20:13"
+            },
+            "returnParameters": {
+              "id": 1661,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1660,
+                  "name": "isRegistered",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1662,
+                  "src": "1074:17:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1659,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1074:4:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1073:19:13"
+            },
+            "scope": 1684,
+            "src": "999:94:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1670,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getRegisteredDerivatives",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1665,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1664,
+                  "name": "party",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1670,
+                  "src": "1219:13:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1663,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1219:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1218:15:13"
+            },
+            "returnParameters": {
+              "id": 1669,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1668,
+                  "name": "derivatives",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1670,
+                  "src": "1257:41:13",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_RegisteredDerivative_$1637_memory_$dyn_memory_ptr",
+                    "typeString": "struct RegistryInterface.RegisteredDerivative[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "contractScope": null,
+                      "id": 1666,
+                      "name": "RegisteredDerivative",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 1637,
+                      "src": "1257:20:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_RegisteredDerivative_$1637_storage_ptr",
+                        "typeString": "struct RegistryInterface.RegisteredDerivative"
+                      }
+                    },
+                    "id": 1667,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1257:22:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_RegisteredDerivative_$1637_storage_$dyn_storage_ptr",
+                      "typeString": "struct RegistryInterface.RegisteredDerivative[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1256:43:13"
+            },
+            "scope": 1684,
+            "src": "1185:115:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1676,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAllRegisteredDerivatives",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1671,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1385:2:13"
+            },
+            "returnParameters": {
+              "id": 1675,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1674,
+                  "name": "derivatives",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1676,
+                  "src": "1411:41:13",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_RegisteredDerivative_$1637_memory_$dyn_memory_ptr",
+                    "typeString": "struct RegistryInterface.RegisteredDerivative[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "contractScope": null,
+                      "id": 1672,
+                      "name": "RegisteredDerivative",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 1637,
+                      "src": "1411:20:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_RegisteredDerivative_$1637_storage_ptr",
+                        "typeString": "struct RegistryInterface.RegisteredDerivative"
+                      }
+                    },
+                    "id": 1673,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1411:22:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_RegisteredDerivative_$1637_storage_$dyn_storage_ptr",
+                      "typeString": "struct RegistryInterface.RegisteredDerivative[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1410:43:13"
+            },
+            "scope": 1684,
+            "src": "1349:105:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1683,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isDerivativeCreatorAuthorized",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1679,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1678,
+                  "name": "derivativeCreator",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1683,
+                  "src": "1576:25:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1677,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1576:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1575:27:13"
+            },
+            "returnParameters": {
+              "id": 1682,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1681,
+                  "name": "isAuthorized",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1683,
+                  "src": "1626:17:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1680,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1626:4:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1625:19:13"
+            },
+            "scope": 1684,
+            "src": "1537:108:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1685,
+        "src": "88:1559:13"
+      }
+    ],
+    "src": "27:1621:13"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.1",
+  "updatedAt": "2019-03-12T17:57:05.166Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
