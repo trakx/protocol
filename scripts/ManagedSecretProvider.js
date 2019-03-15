@@ -100,6 +100,11 @@ class ManagedSecretProvider {
         return Buffer.from(result.plaintext, "base64").toString().trim();
       });
 
+      // If more than one key is provided, ensure that the `num_addresses` parameter matches the number of keys.
+      if (keys.length > 1) {
+        this.remainingArgs[2] = keys.length;
+      }
+
       // If there is only 1 key, convert into a single element before constructing `HDWalletProvider`
       // This is important, as a single mnemonic will fail if passed in as an array.
       if (keys.length == 1) {
