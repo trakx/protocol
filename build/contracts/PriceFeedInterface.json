@@ -1,0 +1,738 @@
+{
+  "contractName": "PriceFeedInterface",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "identifier",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "name": "time",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "price",
+          "type": "int256"
+        }
+      ],
+      "name": "PriceUpdated",
+      "type": "event"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "identifier",
+          "type": "bytes32"
+        }
+      ],
+      "name": "isIdentifierSupported",
+      "outputs": [
+        {
+          "name": "isSupported",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "identifier",
+          "type": "bytes32"
+        }
+      ],
+      "name": "latestPrice",
+      "outputs": [
+        {
+          "name": "publishTime",
+          "type": "uint256"
+        },
+        {
+          "name": "price",
+          "type": "int256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "/*\n  PriceFeedInterface contract.\n  The interface that contracts use to query unverified price feeds.\n*/\npragma solidity ^0.5.0;\n\n\n// This interface allows contracts to query unverified prices.\ninterface PriceFeedInterface {\n    // Whether this PriceFeeds provides prices for the given identifier.\n    function isIdentifierSupported(bytes32 identifier) external view returns (bool isSupported);\n\n    // Gets the latest time-price pair at which a price was published. The transaction will revert if no prices have\n    // been published for this identifier.\n    function latestPrice(bytes32 identifier) external view returns (uint publishTime, int price);\n\n    // An event fired when a price is published.\n    event PriceUpdated(bytes32 indexed identifier, uint indexed time, int price);\n}\n",
+  "sourcePath": "/Users/hal2001/Documents/GitHub/protocol/contracts/PriceFeedInterface.sol",
+  "ast": {
+    "absolutePath": "/Users/hal2001/Documents/GitHub/protocol/contracts/PriceFeedInterface.sol",
+    "exportedSymbols": {
+      "PriceFeedInterface": [
+        1276
+      ]
+    },
+    "id": 1277,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1251,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "105:23:11"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 1276,
+        "linearizedBaseContracts": [
+          1276
+        ],
+        "name": "PriceFeedInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1258,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isIdentifierSupported",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1254,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1253,
+                  "name": "identifier",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1258,
+                  "src": "333:18:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1252,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "333:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "332:20:11"
+            },
+            "returnParameters": {
+              "id": 1257,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1256,
+                  "name": "isSupported",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1258,
+                  "src": "376:16:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1255,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "376:4:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "375:18:11"
+            },
+            "scope": 1276,
+            "src": "302:92:11",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1267,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "latestPrice",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1261,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1260,
+                  "name": "identifier",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1267,
+                  "src": "581:18:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1259,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "581:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "580:20:11"
+            },
+            "returnParameters": {
+              "id": 1266,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1263,
+                  "name": "publishTime",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1267,
+                  "src": "624:16:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1262,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "624:4:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1265,
+                  "name": "price",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1267,
+                  "src": "642:9:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  },
+                  "typeName": {
+                    "id": 1264,
+                    "name": "int",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "642:3:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "623:29:11"
+            },
+            "scope": 1276,
+            "src": "560:93:11",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 1275,
+            "name": "PriceUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1274,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1269,
+                  "indexed": true,
+                  "name": "identifier",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1275,
+                  "src": "727:26:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1268,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "727:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1271,
+                  "indexed": true,
+                  "name": "time",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1275,
+                  "src": "755:17:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1270,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "755:4:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1273,
+                  "indexed": false,
+                  "name": "price",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1275,
+                  "src": "774:9:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  },
+                  "typeName": {
+                    "id": 1272,
+                    "name": "int",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "774:3:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "726:58:11"
+            },
+            "src": "708:77:11"
+          }
+        ],
+        "scope": 1277,
+        "src": "194:593:11"
+      }
+    ],
+    "src": "105:683:11"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/hal2001/Documents/GitHub/protocol/contracts/PriceFeedInterface.sol",
+    "exportedSymbols": {
+      "PriceFeedInterface": [
+        1276
+      ]
+    },
+    "id": 1277,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1251,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "105:23:11"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 1276,
+        "linearizedBaseContracts": [
+          1276
+        ],
+        "name": "PriceFeedInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1258,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isIdentifierSupported",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1254,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1253,
+                  "name": "identifier",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1258,
+                  "src": "333:18:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1252,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "333:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "332:20:11"
+            },
+            "returnParameters": {
+              "id": 1257,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1256,
+                  "name": "isSupported",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1258,
+                  "src": "376:16:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1255,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "376:4:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "375:18:11"
+            },
+            "scope": 1276,
+            "src": "302:92:11",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1267,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "latestPrice",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1261,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1260,
+                  "name": "identifier",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1267,
+                  "src": "581:18:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1259,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "581:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "580:20:11"
+            },
+            "returnParameters": {
+              "id": 1266,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1263,
+                  "name": "publishTime",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1267,
+                  "src": "624:16:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1262,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "624:4:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1265,
+                  "name": "price",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1267,
+                  "src": "642:9:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  },
+                  "typeName": {
+                    "id": 1264,
+                    "name": "int",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "642:3:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "623:29:11"
+            },
+            "scope": 1276,
+            "src": "560:93:11",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 1275,
+            "name": "PriceUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1274,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1269,
+                  "indexed": true,
+                  "name": "identifier",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1275,
+                  "src": "727:26:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1268,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "727:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1271,
+                  "indexed": true,
+                  "name": "time",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1275,
+                  "src": "755:17:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1270,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "755:4:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1273,
+                  "indexed": false,
+                  "name": "price",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1275,
+                  "src": "774:9:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  },
+                  "typeName": {
+                    "id": 1272,
+                    "name": "int",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "774:3:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "726:58:11"
+            },
+            "src": "708:77:11"
+          }
+        ],
+        "scope": 1277,
+        "src": "194:593:11"
+      }
+    ],
+    "src": "105:683:11"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.1",
+  "updatedAt": "2019-03-15T22:24:20.533Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

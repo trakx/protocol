@@ -1,0 +1,232 @@
+{
+  "contractName": "AdminInterface",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "emergencyShutdown",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "remargin",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "/*\n  AdminInterface contract.\n  The interfact that enumerates the functionality that derivative contracts expose to the admin.\n*/\npragma solidity ^0.5.0;\n\n\n// The functionality that all derivative contracts expose to the admin.\ninterface AdminInterface {\n    // Initiates the shutdown process, in case of an emergency.\n    function emergencyShutdown() external;\n\n    // A core contract method called immediately before or after any financial transaction. It pays fees and moves money\n    // between margin accounts to make sure they reflect the NAV of the contract.\n    function remargin() external;\n}\n",
+  "sourcePath": "/Users/hal2001/Documents/GitHub/protocol/contracts/AdminInterface.sol",
+  "ast": {
+    "absolutePath": "/Users/hal2001/Documents/GitHub/protocol/contracts/AdminInterface.sol",
+    "exportedSymbols": {
+      "AdminInterface": [
+        202
+      ]
+    },
+    "id": 203,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 195,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "130:23:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 202,
+        "linearizedBaseContracts": [
+          202
+        ],
+        "name": "AdminInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 198,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "emergencyShutdown",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 196,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "349:2:1"
+            },
+            "returnParameters": {
+              "id": 197,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "360:0:1"
+            },
+            "scope": 202,
+            "src": "323:38:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 201,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "remargin",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 199,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "587:2:1"
+            },
+            "returnParameters": {
+              "id": 200,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "598:0:1"
+            },
+            "scope": 202,
+            "src": "570:29:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 203,
+        "src": "228:373:1"
+      }
+    ],
+    "src": "130:472:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/hal2001/Documents/GitHub/protocol/contracts/AdminInterface.sol",
+    "exportedSymbols": {
+      "AdminInterface": [
+        202
+      ]
+    },
+    "id": 203,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 195,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "130:23:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 202,
+        "linearizedBaseContracts": [
+          202
+        ],
+        "name": "AdminInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 198,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "emergencyShutdown",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 196,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "349:2:1"
+            },
+            "returnParameters": {
+              "id": 197,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "360:0:1"
+            },
+            "scope": 202,
+            "src": "323:38:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 201,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "remargin",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 199,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "587:2:1"
+            },
+            "returnParameters": {
+              "id": 200,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "598:0:1"
+            },
+            "scope": 202,
+            "src": "570:29:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 203,
+        "src": "228:373:1"
+      }
+    ],
+    "src": "130:472:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.1",
+  "updatedAt": "2019-03-15T22:24:20.529Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

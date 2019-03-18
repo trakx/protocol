@@ -1,0 +1,608 @@
+{
+  "contractName": "StoreInterface",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "payOracleFees",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "erc20Address",
+          "type": "address"
+        }
+      ],
+      "name": "payOracleFeesErc20",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "startTime",
+          "type": "uint256"
+        },
+        {
+          "name": "endTime",
+          "type": "uint256"
+        },
+        {
+          "name": "pfc",
+          "type": "uint256"
+        }
+      ],
+      "name": "computeOracleFees",
+      "outputs": [
+        {
+          "name": "feeAmount",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "/*\n  StoreInterface contract.\n\n  An interface that allows derivative contracts to pay Oracle fees.\n*/\npragma solidity ^0.5.0;\n\nimport \"openzeppelin-solidity/contracts/token/ERC20/IERC20.sol\";\n\n\n// This interface allows derivative contracts to pay Oracle fees for their use of the system.\ninterface StoreInterface {\n\n    // Pays Oracle fees in ETH to the store. To be used by contracts whose margin currency is ETH.\n    function payOracleFees() external payable;\n\n    // Pays Oracle fees in the margin currency, erc20Address, to the store. To be used if the margin currency is an\n    // ERC20 token rather than ETH. All approved tokens are transfered.\n    function payOracleFeesErc20(address erc20Address) external; \n\n    // Computes the Oracle fees that a contract should pay for a period. `pfc` is the \"profit from corruption\", or the\n    // maximum amount of margin currency that a token sponsor could extract from the contract through corrupting the\n    // price feed in their favor.\n    function computeOracleFees(uint startTime, uint endTime, uint pfc) external view returns (uint feeAmount);\n}\n",
+  "sourcePath": "/Users/hal2001/Documents/GitHub/protocol/contracts/StoreInterface.sol",
+  "ast": {
+    "absolutePath": "/Users/hal2001/Documents/GitHub/protocol/contracts/StoreInterface.sol",
+    "exportedSymbols": {
+      "StoreInterface": [
+        1724
+      ]
+    },
+    "id": 1725,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1703,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "102:23:15"
+      },
+      {
+        "absolutePath": "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
+        "file": "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
+        "id": 1704,
+        "nodeType": "ImportDirective",
+        "scope": 1725,
+        "sourceUnit": 7094,
+        "src": "127:64:15",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 1724,
+        "linearizedBaseContracts": [
+          1724
+        ],
+        "name": "StoreInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1707,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "payOracleFees",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1705,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "441:2:15"
+            },
+            "returnParameters": {
+              "id": 1706,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "460:0:15"
+            },
+            "scope": 1724,
+            "src": "419:42:15",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1712,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "payOracleFeesErc20",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1710,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1709,
+                  "name": "erc20Address",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1712,
+                  "src": "683:20:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1708,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "683:7:15",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "682:22:15"
+            },
+            "returnParameters": {
+              "id": 1711,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "713:0:15"
+            },
+            "scope": 1724,
+            "src": "655:59:15",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1723,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "computeOracleFees",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1719,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1714,
+                  "name": "startTime",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1723,
+                  "src": "1018:14:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1713,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1018:4:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1716,
+                  "name": "endTime",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1723,
+                  "src": "1034:12:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1715,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1034:4:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1718,
+                  "name": "pfc",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1723,
+                  "src": "1048:8:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1717,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1048:4:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1017:40:15"
+            },
+            "returnParameters": {
+              "id": 1722,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1721,
+                  "name": "feeAmount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1723,
+                  "src": "1081:14:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1720,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1081:4:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1080:16:15"
+            },
+            "scope": 1724,
+            "src": "991:106:15",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1725,
+        "src": "288:811:15"
+      }
+    ],
+    "src": "102:998:15"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/hal2001/Documents/GitHub/protocol/contracts/StoreInterface.sol",
+    "exportedSymbols": {
+      "StoreInterface": [
+        1724
+      ]
+    },
+    "id": 1725,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1703,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "102:23:15"
+      },
+      {
+        "absolutePath": "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
+        "file": "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
+        "id": 1704,
+        "nodeType": "ImportDirective",
+        "scope": 1725,
+        "sourceUnit": 7094,
+        "src": "127:64:15",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 1724,
+        "linearizedBaseContracts": [
+          1724
+        ],
+        "name": "StoreInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1707,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "payOracleFees",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1705,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "441:2:15"
+            },
+            "returnParameters": {
+              "id": 1706,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "460:0:15"
+            },
+            "scope": 1724,
+            "src": "419:42:15",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1712,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "payOracleFeesErc20",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1710,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1709,
+                  "name": "erc20Address",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1712,
+                  "src": "683:20:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1708,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "683:7:15",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "682:22:15"
+            },
+            "returnParameters": {
+              "id": 1711,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "713:0:15"
+            },
+            "scope": 1724,
+            "src": "655:59:15",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1723,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "computeOracleFees",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1719,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1714,
+                  "name": "startTime",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1723,
+                  "src": "1018:14:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1713,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1018:4:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1716,
+                  "name": "endTime",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1723,
+                  "src": "1034:12:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1715,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1034:4:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1718,
+                  "name": "pfc",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1723,
+                  "src": "1048:8:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1717,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1048:4:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1017:40:15"
+            },
+            "returnParameters": {
+              "id": 1722,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1721,
+                  "name": "feeAmount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1723,
+                  "src": "1081:14:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1720,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1081:4:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1080:16:15"
+            },
+            "scope": 1724,
+            "src": "991:106:15",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1725,
+        "src": "288:811:15"
+      }
+    ],
+    "src": "102:998:15"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.1",
+  "updatedAt": "2019-03-15T22:24:20.535Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
