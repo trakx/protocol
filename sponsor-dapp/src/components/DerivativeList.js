@@ -157,8 +157,7 @@ class DerivativeList extends React.Component {
       } else if (contract.balanceOf[tokensHeldKey].value.toString() !== "0") {
         role = "Token Holder";
       } else {
-        // Don't show this contract if the current user isn't a party to it.
-        continue;
+        role = "Watcher";
       }
 
       // Add the data from drizzle to the array.
