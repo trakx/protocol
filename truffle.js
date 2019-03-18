@@ -39,12 +39,7 @@ module.exports = {
       gas: 6720000
     },
     ropsten: {
-      provider: new ManagedSecretProvider(
-        GckmsConfig,
-        `https://ropsten.infura.io/v3/${infuraApiKey}`,
-        0,
-        GckmsConfig.length
-      ),
+      provider: new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/${infuraApiKey}`, 0, 2),
       network_id: "*",
       gas: 6720000,
       gasPrice: 20000000000
