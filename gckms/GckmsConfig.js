@@ -86,13 +86,62 @@ function getDefaultStaticConfig() {
       }
     },
     ropsten: {
-      deployer: {},
-      registry: {},
-      store: {},
-      priceFeed: {},
-      sponsorWhitelist: {},
-      returnCalculatorWhitelist: {},
-      marginCurrencyWhitelist: {}
+      deployer: {
+        projectId: "uma-protocol",
+        locationId: "asia-east2",
+        keyRingId: "v1_prod",
+        cryptoKeyId: "deployer",
+        ciphertextBucket: "v1_prod_enc",
+        ciphertextFilename: "deployer.enc"
+      },
+      registry: {
+        projectId: "uma-protocol",
+        locationId: "asia-east2",
+        keyRingId: "v1_prod",
+        cryptoKeyId: "registry",
+        ciphertextBucket: "v1_prod_enc",
+        ciphertextFilename: "registry.enc"
+      },
+      store: {
+        projectId: "uma-protocol",
+        locationId: "asia-east2",
+        keyRingId: "v1_prod",
+        cryptoKeyId: "store",
+        ciphertextBucket: "v1_prod_enc",
+        ciphertextFilename: "store.enc"
+      },
+      priceFeed: {
+        projectId: "uma-protocol",
+        locationId: "asia-east2",
+        keyRingId: "v1_prod",
+        cryptoKeyId: "priceFeed",
+        ciphertextBucket: "v1_prod_enc",
+        ciphertextFilename: "priceFeed.enc"
+      },
+      sponsorWhitelist: {
+        projectId: "uma-protocol",
+        locationId: "asia-east2",
+        keyRingId: "v1_prod",
+        cryptoKeyId: "sponsorWhitelist",
+        ciphertextBucket: "v1_prod_enc",
+        ciphertextFilename: "sponsorWhitelist.enc"
+      },
+      returnCalculatorWhitelist: {
+        projectId: "uma-protocol",
+        locationId: "asia-east2",
+        keyRingId: "v1_prod",
+        cryptoKeyId: "returnCalculatorWhitelist",
+        ciphertextBucket: "v1_prod_enc",
+        ciphertextFilename: "returnCalculatorWhitelist.enc"
+      },
+      marginCurrencyWhitelist: {
+        projectId: "uma-protocol",
+        locationId: "asia-east2",
+        keyRingId: "v1_prod",
+        cryptoKeyId: "marginCurrencyWhitelist",
+        ciphertextBucket: "v1_prod_enc",
+        ciphertextFilename: "marginCurrencyWhitelist.enc"
+      }
     },
     private: {
       deployer: {},
