@@ -105,6 +105,15 @@ contract Voting is Testable {
         delete voteInstance.committedHashes[msg.sender];
     }
 
+    function claimReward() external {
+        // Get the last round this user participated in, lastRound.
+        // Go to rounds[lastRound].priceRequests, priceRequests.
+        // For each priceRequest, check if there was a price resolution. Or otherwise find out if the user is eligible.
+        // Calculate the reward due. Find the total amount of inflation, the total number of correct voters, and whether
+        // this voter was correct.
+        // Call the token contract to mint the rewards.
+    }
+
     /**
      * @notice Enqueues a request (if a request isn't already present) for the given `identifier`, `time` pair.
      * @dev Returns the time at which the user should expect the price to be resolved.
