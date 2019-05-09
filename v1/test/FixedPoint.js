@@ -76,5 +76,4 @@ contract("FixedPoint", function(accounts) {
     // Reverts on division by zero.
     assert(await didContractThrow(FixedPoint.wrapDiv("1", "0")));
   });
-
 });
