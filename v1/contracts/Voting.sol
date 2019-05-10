@@ -43,6 +43,8 @@ contract Voting is Testable {
         // The stage of voting for this round.
         VoteStage voteStage;
 
+        uint snapshotId;
+
         // The list of price requests that were/are being voted on this round.
         PriceRequest[] priceRequests;
     }
@@ -70,6 +72,9 @@ contract Voting is Testable {
 
     // Maps round numbers to the rounds.
     mapping(uint => Round) private rounds;
+
+    // Maps a voter to the round number of the last round they participated in.
+    mapping(address => uint) private lastParticipatedRound;
 
     constructor(bool _isTest) public Testable(_isTest) {
         currentRoundNumber = 1;
@@ -106,12 +111,40 @@ contract Voting is Testable {
     }
 
     function claimReward() external {
-        // Get the last round this user participated in, lastRound.
-        // Go to rounds[lastRound].priceRequests, priceRequests.
-        // For each priceRequest, check if there was a price resolution. Or otherwise find out if the user is eligible.
-        // Calculate the reward due. Find the total amount of inflation, the total number of correct voters, and whether
-        // this voter was correct.
-        // Call the token contract to mint the rewards.
+        // TODO(ptare): In order to implement this one, we really need some interface at least for the Mode computation,
+        // ResultComputationInterface?
+        // Maybe make msg.sender something passed in, if other functions are going to call this thing?
+        uint roundNumber = lastParticipatedRound[msg.sender];
+        PriceRequests[] storage priceRequests = rounds[roundNumber].priceRequests;
+        uint numResolvedVotes = 0;
+        uint numCorrectlyVotedTokens = 0;
+        uint numCorrectlyVotedTokensForThisUser = 0;
+        // TODO(ptare): May want to use SafeMath here.
+        for (uint i = 0; i < priceRequests.length; i = i + 1) {
+            bytes32 identifier = priceRequests[i].identifier;
+            uint time = priceRequests[i].time;
+
+            // This means we disallow prices of 0.
+            bool isResolved = priceResolutions[identifier][time].resolvedPrice != 0;
+            if (!isResolved) {
+                continue;
+            }
+            numResolvedVotes = numResolvedVotes + 1;
+            ResultComputation storage resultComputation =
+                priceResolutions[identifier][time].votes[roundNumber].resultComputation;
+            numCorrectlyVotedTokens = numCorrectlyVotedTokens + resultComputation.getTotalCorrectVotes();
+
+            if (resultComputation.wasCorrect(msg.sender)) {
+                numCorrectlyVotedTokensForThisUser = numCorrectlyVotedTokensForThisUser +
+                    resultComputation.votesByUser(msg.sender);
+            }
+        }
+        // TODO(ptare): Implement a power operation.
+        // Total amount of inflation: (1 + inflationRate)^numResolvedVotesInRound
+        // totalCorrect: sum over #correct voters for each resolved vote
+        // this voter's correct: sum over weight and was correct for each resolved vote
+        // Mint and award this voter (this voter's correct)/totalCorrect * totalAmountOfInflation
+        lastParticipatedRound[msg.sender] = UINT_MAX;
     }
 
     /**
