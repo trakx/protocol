@@ -49,6 +49,7 @@ library ResultComputation {
         // Options:
         // 1. Revert if you call this method but the vote wasn't resolved.
         // 2. Return false.
+        // Problem: can we even detect when we are in this state?
         return votePrice == data.currentMode;
     }
 

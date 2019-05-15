@@ -17,18 +17,18 @@ contract("ResultComputation", function(accounts) {
     let resolved = await resultComputation.wrapGetResolvedPrice(minVoteThreshold);
     assert.isTrue(resolved.isResolved);
     assert.equal(resolved.price, priceOne);
-      assert.isTrue(await resultComputation.wrapWasVoteCorrect(priceOne));
-      assert.isFalse(await resultComputation.wrapWasVoteCorrect(priceTwo));
-      assert.equal(await resultComputation.wrapGetTotalCorrectlyVotedTokens(), web3.utils.toWei("5"));
+    assert.isTrue(await resultComputation.wrapWasVoteCorrect(priceOne));
+    assert.isFalse(await resultComputation.wrapWasVoteCorrect(priceTwo));
+    assert.equal(await resultComputation.wrapGetTotalCorrectlyVotedTokens(), web3.utils.toWei("5"));
 
     await resultComputation.wrapAddVote(priceTwo, web3.utils.toWei("4"));
     // Frequency table: priceOne->5, priceTwo->4. Cutoff: 4.5.
     resolved = await resultComputation.wrapGetResolvedPrice(minVoteThreshold);
     assert.isTrue(resolved.isResolved);
     assert.equal(resolved.price, priceOne);
-      assert.isTrue(await resultComputation.wrapWasVoteCorrect(priceOne));
-      assert.isFalse(await resultComputation.wrapWasVoteCorrect(priceTwo));
-      assert.equal(await resultComputation.wrapGetTotalCorrectlyVotedTokens(), web3.utils.toWei("5"));
+    assert.isTrue(await resultComputation.wrapWasVoteCorrect(priceOne));
+    assert.isFalse(await resultComputation.wrapWasVoteCorrect(priceTwo));
+    assert.equal(await resultComputation.wrapGetTotalCorrectlyVotedTokens(), web3.utils.toWei("5"));
 
     await resultComputation.wrapAddVote(priceThree, web3.utils.toWei("4"));
     // Frequency table: priceOne->5, priceTwo->4, priceThree->4. Cutoff: 6.5.
@@ -42,11 +42,14 @@ contract("ResultComputation", function(accounts) {
     resolved = await resultComputation.wrapGetResolvedPrice(minVoteThreshold);
     assert.isFalse(resolved.isResolved);
 
-    await resultComputation.wrapAddVote(priceTwo, web3.utils.toWei("4"));
+    await resultComputation.wrapAddVote(priceTwo, web3.utils.toWei("1.1"));
     // Frequency table: priceOne->5, priceTwo->9.1, priceThree->4. Cutoff: 9.05.
     resolved = await resultComputation.wrapGetResolvedPrice(minVoteThreshold);
     assert.isTrue(resolved.isResolved);
     assert.equal(resolved.price, priceTwo);
+    assert.isFalse(await resultComputation.wrapWasVoteCorrect(priceOne));
+    assert.isTrue(await resultComputation.wrapWasVoteCorrect(priceTwo));
+    assert.equal((await resultComputation.wrapGetTotalCorrectlyVotedTokens()).toString(), web3.utils.toWei("9.1"));
   });
 
   it("Zero price", async function() {
@@ -65,6 +68,8 @@ contract("ResultComputation", function(accounts) {
     resolved = await resultComputation.wrapGetResolvedPrice(minVoteThreshold);
     assert.isTrue(resolved.isResolved);
     assert.equal(resolved.price, zeroPrice);
+    assert.isTrue(await resultComputation.wrapWasVoteCorrect(zeroPrice));
+    assert.equal((await resultComputation.wrapGetTotalCorrectlyVotedTokens()).toString(), web3.utils.toWei("5"));
   });
 
   it("Min vote threshold", async function() {
@@ -92,5 +97,8 @@ contract("ResultComputation", function(accounts) {
     resolved = await resultComputation.wrapGetResolvedPrice(minVotes);
     assert.isTrue(resolved.isResolved);
     assert.equal(resolved.price, priceOne);
+    assert.isTrue(await resultComputation.wrapWasVoteCorrect(priceOne));
+    assert.isFalse(await resultComputation.wrapWasVoteCorrect(priceTwo));
+    assert.equal((await resultComputation.wrapGetTotalCorrectlyVotedTokens()).toString(), web3.utils.toWei("10"));
   });
 });

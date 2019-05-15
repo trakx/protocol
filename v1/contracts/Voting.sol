@@ -3,6 +3,7 @@ pragma solidity ^0.5.0;
 pragma experimental ABIEncoderV2;
 
 import "../../common/contracts/Testable.sol";
+import "./ResultComputation.sol";
 
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 
@@ -14,6 +15,7 @@ import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 contract Voting is Testable {
 
     using SafeMath for uint;
+    using ResultComputation for ResultComputation.ResultComputationData;
 
     // The current voting round for the contract. Note: this assumes voting rounds do not overlap.
     uint public currentRoundNumber;
@@ -51,6 +53,8 @@ contract Voting is Testable {
         // Maps (voterAddress) to their committed hash.
         // A bytes32 of `0` indicates no commit or a commit that was already revealed.
         mapping(address => bytes32) committedHashes;
+        mapping(address => int) revealedVotes;
+        ResultComputation.ResultComputationData resultComputationData;
     }
 
     struct PriceResolution {
