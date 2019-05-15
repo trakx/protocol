@@ -44,6 +44,26 @@ library ResultComputation {
         }
     }
 
+    function wasVoteCorrect(ResultComputationData storage data, int votePrice) internal view returns (bool) {
+        // TODO(ptare): Check for whether the vote is actually resolved.
+        // Options:
+        // 1. Revert if you call this method but the vote wasn't resolved.
+        // 2. Return false.
+        return votePrice == data.currentMode;
+    }
+
+    function getTotalCorrectlyVotedTokens(ResultComputationData storage data)
+        internal
+        view
+        returns (FixedPoint.Unsigned memory)
+    {
+        // TODO(ptare): Check for whether the vote is actually resolved.
+        return data.voteFrequency[data.currentMode];
+    }
+
+    function _isVoteResolved(ResultComputationData storage data) internal view returns (bool) {
+    }
+
     /**
      * @dev Adds a new vote to be used when computing the result.
      */

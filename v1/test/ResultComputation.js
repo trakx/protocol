@@ -17,12 +17,18 @@ contract("ResultComputation", function(accounts) {
     let resolved = await resultComputation.wrapGetResolvedPrice(minVoteThreshold);
     assert.isTrue(resolved.isResolved);
     assert.equal(resolved.price, priceOne);
+      assert.isTrue(await resultComputation.wrapWasVoteCorrect(priceOne));
+      assert.isFalse(await resultComputation.wrapWasVoteCorrect(priceTwo));
+      assert.equal(await resultComputation.wrapGetTotalCorrectlyVotedTokens(), web3.utils.toWei("5"));
 
     await resultComputation.wrapAddVote(priceTwo, web3.utils.toWei("4"));
     // Frequency table: priceOne->5, priceTwo->4. Cutoff: 4.5.
     resolved = await resultComputation.wrapGetResolvedPrice(minVoteThreshold);
     assert.isTrue(resolved.isResolved);
     assert.equal(resolved.price, priceOne);
+      assert.isTrue(await resultComputation.wrapWasVoteCorrect(priceOne));
+      assert.isFalse(await resultComputation.wrapWasVoteCorrect(priceTwo));
+      assert.equal(await resultComputation.wrapGetTotalCorrectlyVotedTokens(), web3.utils.toWei("5"));
 
     await resultComputation.wrapAddVote(priceThree, web3.utils.toWei("4"));
     // Frequency table: priceOne->5, priceTwo->4, priceThree->4. Cutoff: 6.5.
