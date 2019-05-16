@@ -3,6 +3,8 @@ pragma solidity ^0.5.0;
 pragma experimental ABIEncoderV2;
 
 import "../../common/contracts/Testable.sol";
+import "./ResultComputation.sol";
+import "./VotingToken.sol";
 
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 
@@ -14,6 +16,7 @@ import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 contract Voting is Testable {
 
     using SafeMath for uint;
+    using ResultComputation for ResultComputation.ResultComputationData;
 
     // The current voting round for the contract. Note: this assumes voting rounds do not overlap.
     uint public currentRoundNumber;
@@ -43,6 +46,9 @@ contract Voting is Testable {
         // The stage of voting for this round.
         VoteStage voteStage;
 
+        // Snapshot ID of VotingToken for this round.
+        uint snapshotId;
+
         // The list of price requests that were/are being voted on this round.
         PriceRequest[] priceRequests;
     }
@@ -51,6 +57,10 @@ contract Voting is Testable {
         // Maps (voterAddress) to their committed hash.
         // A bytes32 of `0` indicates no commit or a commit that was already revealed.
         mapping(address => bytes32) committedHashes;
+        // Maps (voterAddress) to their revealed vote.
+        mapping(address => int) revealedPrices;
+        // Data needed to compute the resolved price and which votes are correct.
+        ResultComputation.ResultComputationData resultComputationData;
     }
 
     struct PriceResolution {
@@ -72,8 +82,14 @@ contract Voting is Testable {
     // Maps round numbers to the rounds.
     mapping(uint => Round) private rounds;
 
-    constructor(bool _isTest) public Testable(_isTest) {
+    // The ERC20 token that voters hold.
+    VotingToken private votingToken;
+
+    constructor(bool _isTest, address votingTokenAddress) public Testable(_isTest) {
         currentRoundNumber = 1;
+        votingToken = VotingToken(votingTokenAddress);
+        // TODO(ptare): Move this to the right place when we implement phasing.
+        rounds[currentRoundNumber].snapshotId = votingToken.snapshot();
     }
 
     /**
@@ -104,6 +120,11 @@ contract Voting is Testable {
         require(keccak256(abi.encode(price, salt)) == voteInstance.committedHashes[msg.sender],
                 "Committed hash doesn't match revealed price and salt");
         delete voteInstance.committedHashes[msg.sender];
+        voteInstance.revealedPrices[msg.sender] = price;
+        voteInstance.resultComputationData.addVote(
+            price,
+            votingToken.fixedPointBalanceOfAt(msg.sender, rounds[currentRoundNumber].snapshotId)
+        );
     }
 
     /**

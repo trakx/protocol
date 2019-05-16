@@ -1,5 +1,8 @@
 pragma solidity ^0.5.0;
 
+pragma experimental ABIEncoderV2;
+
+import "./FixedPoint.sol";
 import "./MultiRole.sol";
 
 import "openzeppelin-solidity/contracts/drafts/ERC20Snapshot.sol";
@@ -39,5 +42,14 @@ contract VotingToken is ERC20Snapshot, MultiRole {
      */
     function burn(uint value) external onlyRoleHolder(uint(Roles.Burner)) {
         _burn(msg.sender, value);
+    }
+
+    /**
+     * @dev Returns the balance of `account` at `snapshotId`.
+     */
+    function fixedPointBalanceOfAt(address account, uint snapshotId) public view returns (FixedPoint.Unsigned memory) {
+        // This token's balances are already stored the same way as FixedPoint.Unsigneds are (i.e., with a 10**18
+        // factor).
+        return FixedPoint.Unsigned(balanceOfAt(account, snapshotId));
     }
 }
