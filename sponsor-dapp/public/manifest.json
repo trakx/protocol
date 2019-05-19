@@ -1,9 +1,9 @@
 {
-  "short_name": "UMA DApp",
-  "name": "UMA Sponsor DApp",
+  "short_name": "Trakx DApp",
+  "name": "Trakx Sponsor DApp",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "favicon2.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }

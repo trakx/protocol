@@ -148,9 +148,9 @@ class Dashboard extends React.Component {
         <div className="Dashboard">
           <AppBar className={classes.appBar}>
             <Toolbar className={classes.toolbar}>
-              <img src="favicon.ico" alt="UMA logo" className={classes.icon} />
+              <img src="favicon2.png" alt="Trakx logo" className={classes.icon} />
               <Typography component="h1" variant="h6" color="inherit" align="left" noWrap className={classes.title}>
-                UMA Dashboard {titleSubHeader}
+                Trakx Maker Dashboard {titleSubHeader}
               </Typography>
               <Typography component="h1" variant="h6" color="inherit" align="right" noWrap className={classes.title}>
                 {drizzleState.accounts[0]}
