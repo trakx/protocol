@@ -30,5 +30,57 @@
   {
     "contractName": "TokenizedDerivativeCreator",
     "address": "0xA3CA7eFc2cA272BAD10E45E8910b9991e0d2D134"
+  },
+  {
+    "contractName": "Migrations",
+    "address": "0x6a49f2aAa7a98a8f3012010b5b7B8AaE19dbeA3c"
+  },
+  {
+    "contractName": "Migrations",
+    "address": "0x4354fCF2F625B7878c495Ab520E54d1577fCa142"
+  },
+  {
+    "contractName": "Migrations",
+    "address": "0x8B541670189CbF81C8C705De7Ed5a8Fdf39103Eb"
+  },
+  {
+    "contractName": "Migrations",
+    "address": "0x1C7D072ea078df8064825ab3bF41027B5Ac02b44"
+  },
+  {
+    "contractName": "Migrations",
+    "address": "0x0B5FC16C0E85D3Ab91C5f575Cbc9E6d3e9cB1d67"
+  },
+  {
+    "contractName": "Migrations",
+    "address": "0x211472fb8C6AcAEDBE2a8f3239E6aBbd6BD9214a"
+  },
+  {
+    "contractName": "Registry",
+    "address": "0xB58Be54AF52c08f34f6Bc6A76D6c82DFF68b4F3f"
+  },
+  {
+    "contractName": "CentralizedOracle",
+    "address": "0xff1C2FB92F8C3a50e70982db1ac7fCFFC2b82964"
+  },
+  {
+    "contractName": "ManualPriceFeed",
+    "address": "0x02d28D82989A66F1E5B35c9a4e18Ae57BF5d305c"
+  },
+  {
+    "contractName": "CentralizedStore",
+    "address": "0xB947264f8049CEF6674718e11170515f8C81b0ED"
+  },
+  {
+    "contractName": "LeveragedReturnCalculator",
+    "address": "0x7bd7f5c5a59fc0870d623F70604e321DeEB92950"
+  },
+  {
+    "contractName": "TokenizedDerivativeUtils",
+    "address": "0x6f5969d74E6EDbf9717B0bB3EEa554275f2fBB30"
+  },
+  {
+    "contractName": "TokenizedDerivativeCreator",
+    "address": "0x7412BA5c135ea8B5000750dF33ea68763cf30F3f"
   }
 ]
