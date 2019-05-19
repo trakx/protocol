@@ -82,5 +82,37 @@
   {
     "contractName": "TokenizedDerivativeCreator",
     "address": "0x7412BA5c135ea8B5000750dF33ea68763cf30F3f"
+  },
+  {
+    "contractName": "Migrations",
+    "address": "0x9F939F7896C4c1a317d7424210217f99A8502425"
+  },
+  {
+    "contractName": "Registry",
+    "address": "0xF47b0853Ea3F66aE67Ef6D9e7734c7234173F54a"
+  },
+  {
+    "contractName": "CentralizedOracle",
+    "address": "0xE8c625130816AF75E00B6Bb2bA0cD7a0FFb3B0E5"
+  },
+  {
+    "contractName": "ManualPriceFeed",
+    "address": "0x71b569aAEace39bc2BAAd73f1010bed317192f2B"
+  },
+  {
+    "contractName": "CentralizedStore",
+    "address": "0x597d99D1B3565Dc670e33b55AC8f7A192F230e16"
+  },
+  {
+    "contractName": "LeveragedReturnCalculator",
+    "address": "0x3A05A5Ec06bF2cE3d74F8c46c15e722C6F613012"
+  },
+  {
+    "contractName": "TokenizedDerivativeUtils",
+    "address": "0xE69eC54B859F85861B437FcDbdDa5235407906eD"
+  },
+  {
+    "contractName": "TokenizedDerivativeCreator",
+    "address": "0x316A6114D144cacdc00516E1B24a916ba250fD27"
   }
 ]
