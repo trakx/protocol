@@ -34,10 +34,10 @@ class App extends Component {
     switch (network) {
       case "main":
       case "ropsten":
-        primaryColor = "#ff4a4a";
+        primaryColor = "#5270b7";
         break;
       default:
-        primaryColor = "#a44aff";
+        primaryColor = "#5270b7";
     }
 
     return createMuiTheme({
@@ -46,7 +46,7 @@ class App extends Component {
           main: primaryColor
         },
         secondary: {
-          main: "#272528"
+          main: "#5270b7"
         }
       },
       typography: {
